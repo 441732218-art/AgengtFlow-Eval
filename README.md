@@ -1,4 +1,12 @@
-﻿# AgentFlow-Eval
+﻿<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.11+-blue" alt="Python">
+  <img src="https://img.shields.io/badge/React-18-61DAFB" alt="React">
+  <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
+  <a href="https://github.com/441732218-art/AgengtFlow-Eval/actions">
+    <img src="https://github.com/441732218-art/AgengtFlow-Eval/actions/workflows/ci.yml/badge.svg" alt="CI">
+  </a>
+</p>
+# AgentFlow-Eval
 
 面向业务场景的 **Agent 自动化评测工作台**。
 
@@ -61,8 +69,30 @@ npm run dev
 ```
 
 访问 http://localhost:5173
+### 运行测试
+
+```bash
+# 后端单元测试（34 个）
+cd backend
+pytest -v
+
+# 带覆盖率报告
+pytest --cov=app --cov-report=term-missing
+
+# E2E 测试
+pytest tests/test_e2e.py -v
+```
+
+## 在线预览
+
+启动后访问：
+- 前端界面：http://localhost:5173
+- API 文档：http://localhost:8000/docs
+- Celery 监控（Flower）：http://localhost:5555（Docker 环境）
+
 
 ### Docker 启动（Redis + PostgreSQL）
+
 
 ```bash
 cd backend
@@ -122,3 +152,9 @@ LLM-as-Judge 的多维度评分引擎（`judge_engine/llm_judge.py`）：
 ---
 
 © 2026 AgentFlow-Eval
+
+---
+
+<div align="center">
+  <sub>Built with ❤️ by AgentFlow-Eval Team · © 2026</sub>
+</div>

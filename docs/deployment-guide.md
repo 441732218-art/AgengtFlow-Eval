@@ -187,17 +187,49 @@ sudo certbot --nginx -d app.example.com
 
 ## 3. 首次手动部署
 
-### 3.1 克隆代码并启动
+### 3.0 推荐：源码 + Docker Compose 一键部署（无需 GHCR）
+
+适用于首次上云 / 单机 VPS。在服务器上执行：
+
+```bash
+# 1) 安装 Docker（Ubuntu/Debian，需 root）
+curl -fsSL https://raw.githubusercontent.com/441732218-art/AgentFlow-Eval/main/scripts/setup-server.sh | sudo bash
+
+# 2) 重新登录后，一键部署（替换密钥与公网 IP）
+git clone https://github.com/441732218-art/AgentFlow-Eval.git /opt/agentflow-eval
+cd /opt/agentflow-eval
+OPENAI_API_KEY=sk-your-key PUBLIC_HOST=你的公网IP bash scripts/deploy-server.sh
+```
+
+部署成功后访问：
+
+| 服务 | 地址 |
+|------|------|
+| 前端 | `http://你的公网IP/` （端口 80） |
+| API 文档 | `http://你的公网IP:8000/docs` |
+| Flower | `http://你的公网IP:5555` |
+
+更新版本：
+
+```bash
+cd /opt/agentflow-eval
+bash scripts/deploy-server.sh
+```
+
+> 云厂商安全组需放行 **80 / 8000**（可选 5555）。
+
+### 3.1 使用预构建镜像部署（CI → GHCR）
 
 ```bash
 cd /app/agentflow-eval
 
 # 克隆代码（首次部署）
-git clone https://github.com/<your-org>/agentflow-eval.git .
+git clone https://github.com/441732218-art/AgentFlow-Eval.git .
 
 # 拉取 Docker 镜像
 export REGISTRY=ghcr.io
 export IMAGE_TAG=latest
+export GITHUB_REPOSITORY=441732218-art/AgentFlow-Eval
 
 docker compose -f backend/docker-compose.prod.yml down
 docker compose -f backend/docker-compose.prod.yml pull

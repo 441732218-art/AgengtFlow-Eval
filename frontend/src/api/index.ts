@@ -16,4 +16,11 @@ export type {
   BenchmarkRun,
   LeaderboardRow,
 } from "./endpoints/benchmarks";
+export { experimentsApi } from "./endpoints/experiments";
+export type {
+  Experiment,
+  ExperimentCreate,
+  ExperimentCompareResponse,
+  RunCompareItem,
+} from "./endpoints/experiments";
 export { apiClient } from "./client";

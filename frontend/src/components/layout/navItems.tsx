@@ -10,6 +10,7 @@ import {
   BugOutlined,
   FundProjectionScreenOutlined,
   CloudServerOutlined,
+  ExperimentOutlined,
 } from "@ant-design/icons";
 import type { MessageKey } from "@/i18n";
 import type { Permission } from "@/auth/permissions";
@@ -96,6 +97,14 @@ export const NAV_ITEMS: Array<{
     group: "evaluate",
   },
   {
+    key: "/experiments",
+    icon: <ExperimentOutlined />,
+    labelKey: "nav.experiments",
+    label: "对比实验",
+    permission: "task:read",
+    group: "evaluate",
+  },
+  {
     key: "/benchmarks",
     icon: <BarChartOutlined />,
     labelKey: "nav.benchmarks",
@@ -136,6 +145,7 @@ export function resolveSelectedKey(pathname: string): string {
   if (pathname.startsWith("/analytics")) return "/analytics";
   if (pathname.startsWith("/monitoring")) return "/monitoring";
   if (pathname.startsWith("/reports")) return "/reports";
+  if (pathname.startsWith("/experiments")) return "/experiments";
   if (pathname.startsWith("/benchmarks")) return "/benchmarks";
   if (pathname === "/tasks/create") return "/tasks/create";
   if (pathname.startsWith("/tasks")) return "/tasks";

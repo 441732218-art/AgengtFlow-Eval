@@ -18,6 +18,9 @@ const ReportDetailPage = lazy(() => import("@/pages/reports/ReportDetail"));
 const SettingsPage = lazy(() => import("@/pages/Settings"));
 const BillingPage = lazy(() => import("@/pages/billing/index"));
 const BenchmarksPage = lazy(() => import("@/pages/benchmarks/index"));
+const ExperimentListPage = lazy(() => import("@/pages/experiments/index"));
+const ExperimentCreatePage = lazy(() => import("@/pages/experiments/create"));
+const ExperimentDetailPage = lazy(() => import("@/pages/experiments/detail"));
 const PluginsPage = lazy(() => import("@/pages/plugins/index"));
 const NotFoundPage = lazy(() => import("@/pages/NotFound"));
 
@@ -88,6 +91,18 @@ export const router = createBrowserRouter([
       {
         path: "benchmarks",
         element: withSuspense(BenchmarksPage, "cards", "benchmark:read"),
+      },
+      {
+        path: "experiments",
+        element: withSuspense(ExperimentListPage, "cards", "task:read"),
+      },
+      {
+        path: "experiments/create",
+        element: withSuspense(ExperimentCreatePage, "form", "task:create"),
+      },
+      {
+        path: "experiments/:id",
+        element: withSuspense(ExperimentDetailPage, "detail", "evaluation:read"),
       },
       {
         path: "plugins",
